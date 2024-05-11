@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.edu.senaisp.FuncGerente.model.Funcionario;
 
-public interface iCrud {
+public interface iCrudFunc {
 	public List<Funcionario> lista();
 	
 	public int insere(Funcionario func);

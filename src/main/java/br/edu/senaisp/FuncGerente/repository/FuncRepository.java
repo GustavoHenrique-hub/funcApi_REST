@@ -10,7 +10,7 @@ import br.edu.senaisp.FuncGerente.model.Funcionario;
 
 
 @Repository
-public class FuncRepository implements iCrud{
+public class FuncRepository implements iCrudFunc{
 	
 	private String qrSelectAll = "SELECT id, nome, cpf, tel, salario FROM funcionario";
 	private String qrInsert = "INSERT INTO funcionario (nome, cpf, tel, salario) VALUES (?, ?, ?, ?)";
