@@ -1,6 +1,8 @@
 package br.edu.senaisp.FuncGerente.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,39 +50,37 @@ public class FuncController {
 		return strBuffer.toString();
 
 	}
-	
+
 	@PostMapping("/insere")
-	public String insere(@RequestBody Funcionario func) {
+	public ResponseEntity<Funcionario> insere(@RequestBody Funcionario func) {
 		int teste = repository.insere(func);
-		
-		if (teste != 0) {
-			return "Funcionário inserido com sucesso!";
-		}else {
-			return "ERRO: Funcionário não foi inserido!";
-		}
+
+		if (func.getNome().replace(" ", "").equals("") && teste != 0)
+			return (ResponseEntity<Funcionario>) ResponseEntity.status(HttpStatus.BAD_REQUEST);
+
+		return ResponseEntity.ok(func);
 
 	}
-	
-	
+
 	@PutMapping("/update/{id}")
 	public String update(@RequestBody Funcionario func, @PathVariable Integer id) {
 		int teste = repository.update(func, id);
-		
+
 		if (teste != 0) {
 			return "Funcionário atualizado com sucesso!";
-		}else {
+		} else {
 			return "ERRO: Funcionário não foi atualizado!";
 		}
 
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
 	public String update(@PathVariable Integer id) {
 		int teste = repository.delete(id);
-		
+
 		if (teste != 0) {
 			return "Funcionário deletado com sucesso!";
-		}else {
+		} else {
 			return "ERRO: Funcionário não foi deletado!";
 		}
 

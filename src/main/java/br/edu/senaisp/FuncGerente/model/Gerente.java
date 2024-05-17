@@ -1,10 +1,24 @@
 package br.edu.senaisp.FuncGerente.model;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class Gerente {
 	private Integer id;
+	
+	@NotNull
+	@Size(min=2, max=30)
 	private String nome;
+	
+	@NotNull
+	@Size(min=2, max=30)
 	private String cpf;
+	
+	@NotNull
+	@Size(min=2, max=30)
 	private String tel;
+	
+	@NotNull
 	private Float salario;
 	
 	public Gerente() {

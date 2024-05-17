@@ -1,6 +1,7 @@
 package br.edu.senaisp.FuncGerente.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.senaisp.FuncGerente.model.Gerente;
 import br.edu.senaisp.FuncGerente.repository.GerenteRepository;
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/gerente")
@@ -36,14 +39,8 @@ public class GerenteController {
 	}
 
 	@PostMapping("/insere")
-	public String insere(@RequestBody Gerente gen) {
-		int teste = repository.insere(gen);
-
-		if (teste != 0) {
-			return "Gerente inserido com sucesso!";
-		} else {
-			return "ERRO: Gerente não inserido!";
-		}
+	public ResponseEntity<Gerente> insere(@Valid @RequestBody  Gerente gen) {
+		return ResponseEntity.ok(gen);
 	}
 
 	@PutMapping("/altera/{id}")
