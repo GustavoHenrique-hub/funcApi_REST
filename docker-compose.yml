@@ -1,0 +1,13 @@
+services:
+  db_func_api: # Serviço do MySQL
+    container_name: mysql-container
+    build:
+      context: .  # Constrói a imagem a partir do Dockerfile na mesma pasta
+      dockerfile: mysql.Dockerfile  # Usa o Dockerfile para buildar o container
+    restart: always # Reinicia o container se parar
+    ports:
+      - '3306:3306' # Mapeia a porta 3306 do container para a do host
+    volumes:
+      - db_data:/var/lib/mysql # Persiste os dados do banco
+volumes:
+  db_data: # Volume para persistir os dados do MySQL
