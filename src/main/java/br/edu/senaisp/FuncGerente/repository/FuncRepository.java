@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import br.edu.senaisp.FuncGerente.model.Funcionario;
 
-
 @Repository
 public class FuncRepository implements iCrudFunc{
 	
